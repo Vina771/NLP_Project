@@ -316,7 +316,7 @@ st.markdown("""
 <div style="margin-bottom:0.2rem">
     <span class="hero-title">NLP <span class="accent">Search</span></span>
 </div>
-<div class="hero-sub">Moteur de recherche sémantique · AG News · 120 000 documents</div>
+<div class="hero-sub">Moteur de recherche intelligent basé sur NLP · AG News · 120 000 documents</div>
 """, unsafe_allow_html=True)
 
 # --- Sidebar ---

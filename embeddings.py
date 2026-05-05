@@ -3,10 +3,8 @@ import numpy as np
 import pickle
 from sentence_transformers import SentenceTransformer
 
-# all-MiniLM-L6-v2 : bon compromis vitesse / qualité sémantique
 MODEL_NAME = 'all-MiniLM-L6-v2'
 
-# Mettre à False pour encoder tout le corpus (plus long)
 USE_SUBSET = True
 SUBSET_SIZE = 20000
 
@@ -17,7 +15,6 @@ def run():
     test  = pd.read_csv('test_clean.csv')
 
     if USE_SUBSET:
-        # Echantillon stratifié : même proportion par catégorie
         samples = []
         for _, group in train.groupby('category'):
             samples.append(group.sample(min(len(group), SUBSET_SIZE // 4), random_state=42))
@@ -30,7 +27,6 @@ def run():
     print(f"\nChargement du modèle '{MODEL_NAME}'...")
     model = SentenceTransformer(MODEL_NAME)
 
-    # On encode le champ texte brut (pas clean_text) car le modèle gère lui-même le contexte
     texts = (train['title'].fillna('') + ' ' + train['description'].fillna('')).tolist()
 
     print("Encodage en cours (peut prendre plusieurs minutes)...")
@@ -41,7 +37,7 @@ def run():
         convert_to_numpy=True
     )
 
-    print(f"\nShape des embeddings : {embeddings.shape}")  # (N, 384)
+    print(f"\nShape des embeddings : {embeddings.shape}") 
 
     embedding_data = {
         'train'     : train.reset_index(drop=True),
