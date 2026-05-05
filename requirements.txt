@@ -1,7 +1,9 @@
 pandas
+numpy
 scikit-learn
 nltk
 scipy
 matplotlib
 streamlit
 sentence-transformers
+torch
